@@ -32,12 +32,15 @@
         <a href="{{ route('category.index') }}">        
           <h3><i class="fa fa-puzzle-piece" aria-hidden="true"></i> Book Category</h3>
         </a>
+        
+        <a href="{{ route('bookStore.index') }}">  
         <h3><i class="fa fa-file-text-o" aria-hidden="true"></i> List Book</h3>
+        </a>
 
+        <a href="{{ url('/ManageBook') }}">  
         <h3><i class="fa fa-wrench" aria-hidden="true"></i> Manage Book</h3>
-
+        </a>
         <hr>
-        <h3><i class="fa fa-home" aria-hidden="true"></i> Back Home</h3>
         <h3><i class="fa fa-sign-out" aria-hidden="true"></i> Sign Out</h3>
       </div>
       <div id="nav-hide">

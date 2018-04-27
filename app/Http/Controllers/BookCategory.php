@@ -84,6 +84,8 @@ class BookCategory extends Controller
      */
     public function destroy($id)
     {
-        //
+        $data = \App\M_CategoryBook::findOrFail($id);
+        $data->delete();
+        return redirect()->route('category.index');
     }
 }

@@ -13,7 +13,8 @@ class Book extends Controller
      */
     public function index()
     {
-        //
+        $data['data_book'] = \App\M_BookStore::join('category_books','category_books.category_id' , '=' , 'book_stores.category_id')->get();
+        return view('dashboard.listBook', $data);
     }
 
     /**
@@ -35,7 +36,14 @@ class Book extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $data = new \App\M_BookStore();
+        $data->category_id = $request->b_catalog;
+        $data->book_name = $request->b_name;
+        $data->description = $request->b_deskrip;
+        $data->price = $request->b_price;
+        $data->total_stuff = $request->b_total_stuff;
+        $data->save();
+        return redirect()->route('bookStore.index')->with('alert-success','Success Add book');
     }
 
     /**
@@ -57,7 +65,10 @@ class Book extends Controller
      */
     public function edit($id)
     {
-        //
+        $data['data_book'] = \App\M_BookStore::join('category_books','category_books.category_id' , '=' , 'book_stores.category_id')
+        ->where('book_id' , $id)->get();
+        $data['data_catalog'] = \App\M_CategoryBook::all();
+        return view('dashboard.editBook', $data);
     }
 
     /**
@@ -69,7 +80,14 @@ class Book extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $data = \App\M_BookStore::where('book_id' , $id)->first();
+        $data->category_id = $request->b_catalog;
+        $data->book_name = $request->b_name;
+        $data->description = $request->b_deskrip;
+        $data->price = $request->b_price;
+        $data->total_stuff = $request->b_total_stuff;
+        $data->save();
+        return redirect()->route('bookStore.edit' , $id)->with('alert-success','Data has been updated');
     }
 
     /**
@@ -80,6 +98,8 @@ class Book extends Controller
      */
     public function destroy($id)
     {
-        //
+        $data = \App\M_BookStore::findOrFail($id);
+        $data->delete();
+        return redirect('/ManageBook');
     }
 }

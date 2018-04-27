@@ -1,18 +1,27 @@
 @extends('mainTheme.main') 
 
-@section('title' , 'Add New Book')
+@section('title' , 'Edit book')
 
 @section('content')
 
+
+
 <div class="container-fluid">
+    @foreach ($data_book as $item)
   <div class="row">
       <div class="col-lg-12">
+            @if(Session::has('alert-success'))
+            <div class="alert alert-success">
+                <strong>{{ \Illuminate\Support\Facades\Session::get('alert-success') }}</strong>
+            </div>
+            @endif
         <div class="g-card">
         <div class="in-card">
-        <form action="{{ route('bookStore.store') }}" class="form" method="post">
+        <form action="{{ route('bookStore.update' , $item->book_id) }}" class="form" method="post">
           {{ csrf_field() }}
+          {{ method_field('PUT') }}
 
-          <h5>New Book Here</h5>
+          <h5>Manage Book Here</h5>
           <p class="text-right smallin">Silahkan isi sesuai dengan ketentuan</p>
           <div class="my-3"></div>
           <!-- midle of end -->
@@ -24,8 +33,7 @@
             </div>
             <div class="col-lg-7">
               <div class="form-group">
-                <label for="first" class="form-label">ex: Learning Laravel</label>
-                <input id="first" class="form-input" type="text" name="b_name" />
+                <input id="first" class="form-input" type="text" name="b_name" value="{{ $item->book_name }}"/>
               </div>
             </div>
           </div>
@@ -42,8 +50,7 @@
 
             <div class="col-lg-7">
               <div class="form-group">
-                  <label for="second" class="form-label">ex: this book make....</label>
-                  <textarea id="second" class="form-input" name="b_deskrip" rows="6"></textarea>
+                  <textarea id="second" class="form-input" name="b_deskrip" rows="6">{{ $item->description }}</textarea>
               </div>
             </div>
           </div>
@@ -60,8 +67,7 @@
 
             <div class="col-lg-7">
               <div class="form-group">
-                <label for="first" class="form-label">ex: Rp. 30,000</label>
-                <input id="first" class="form-input" type="number" name="b_price"/>
+                <input id="first" class="form-input" type="number" name="b_price" value="{{ $item->price }}"/>
               </div>
             </div>
           </div>
@@ -78,8 +84,7 @@
 
             <div class="col-lg-7">
               <div class="form-group">
-                <label for="first" class="form-label">ex: 200 Pcs</label>
-                <input id="first" class="form-input" type="number" name="b_total_stuff"/>
+                <input id="first" class="form-input" type="number" name="b_total_stuff" value="{{ $item->total_stuff }}"/>
               </div>
             </div>
           </div>
@@ -98,8 +103,8 @@
             <div class="col-lg-7">
               <div class="form-group">
                 <select class="form-control form-input" name="b_catalog">
-                    @foreach ($data_category as $item)
-                        <option value="{{ $item->category_id }}">{{ $item->category_name }}</option>
+                    @foreach ($data_catalog as $item2)
+                        <option value="{{ $item2->category_id }}">{{ $item2->category_name }}</option>
                     @endforeach
                 </select>
               </div>
@@ -110,7 +115,12 @@
 
           <div class="row">
             <div class="col-lg-12">
-              <button type="submit" class="btn btn-primary">Save The Product</button>
+              <button type="submit" class="btn btn-success">Save The Changes</button>                                
+                <form action="{{ route('bookStore.destroy' , $item->book_id) }}" method="post">
+                    {{ csrf_field() }}
+                    {{ method_field('DELETE') }}
+                    <button type="submit" class="btn btn-primary" onclick="return confirm('Are you sure to delete it?')">Delete</button>
+                </form>
             </div>
           </div>
           
@@ -123,6 +133,7 @@
       </div>
 
   </div>
+  @endforeach
 </div>
 
 @endsection

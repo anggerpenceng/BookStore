@@ -1,8 +1,9 @@
 @extends('mainTheme.main') 
 
-@section('title' , 'Category')
+@section('title' , 'List Book')
 
-@section('content') @if(Session::has('alert-success'))
+@section('content') 
+@if(Session::has('alert-success'))
 <div class="alert alert-success">
     <strong>{{ \Illuminate\Support\Facades\Session::get('alert-success') }}</strong>
 </div>
@@ -12,10 +13,7 @@
         {{-- the batas konten --}}
         <div class="col-lg-12 g-card">
             <div class="in-card">
-            <h5>List Product</h5>
-            <a href="{{ route('category.create') }}">
-                <button type="button" class="btn btn-success"><i class="fa fa-plus-circle" aria-hidden="true"></i>  Add Category</button>
-            </a>
+            <h5>List Books</h5>
             <div class="my-3"></div>
             <div class="row">
                 <div class="col-12">
@@ -23,24 +21,20 @@
                         <thead>
                             <tr>
                                 <th>No</th>
-                                <th>Category</th>
+                                <th>Book Name</th>
                                 <th>Description</th>
-                                <th>Action</th>
+                                <th>Prices</th>
+                                <th>Total_Stuff</th>
                             </tr>
                         </thead>
                         <tbody>
-                            @php $no = 1; @endphp @foreach ($data_category as $item)
+                            @php $no = 1; @endphp @foreach ($data_book as $item)
                             <tr>
                                 <td>{{ $no++ }}</td>
-                                <td>{{ $item->category_name }}</td>
+                                <td>{{ $item->book_name }}</td>
                                 <td>{{ $item->description }}</td>
-                                <td>
-                                    <form action="{{ route('category.destroy' , $item->category_id) }}" method="post">
-                                        {{ csrf_field() }}
-                                        {{ method_field('DELETE') }}
-                                        <button type="submit" class="btn btn-primary" onclick="return confirm('Are you sure to delete it?')">Delete</button>
-                                    </form>
-                                </td>
+                                <td>Rp. {{ number_format($item->price) }}</td>
+                                <td>{{ $item->total_stuff }} Book</td>
                             </tr>
                             @endforeach
                         </tbody>
