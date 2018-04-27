@@ -18,12 +18,12 @@
     <div class="wrap-nav">
       <div id="nav-show">
         <div class="logohere">
-          Logo Here
+          Book Store
         </div>
         <div class="the-users">
-          guest
+            {{ Auth::user()->name }}
         </div>
-        <a href="/">
+        <a href="{{ url('/dashboard') }}">
         <h3><i class="fa fa-dashboard" aria-hidden="true"></i> Dashboard</h3>
         </a>
         <a href="{{ route('bookStore.create') }}">
@@ -41,7 +41,14 @@
         <h3><i class="fa fa-wrench" aria-hidden="true"></i> Manage Book</h3>
         </a>
         <hr>
+        <a href="{{ route('logout') }}"
+                      onclick="event.preventDefault();
+                                    document.getElementById('logout-form').submit();">
         <h3><i class="fa fa-sign-out" aria-hidden="true"></i> Sign Out</h3>
+        </a>
+        <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+            @csrf
+         </form>
       </div>
       <div id="nav-hide">
       </div>

@@ -116,17 +116,21 @@
           <div class="row">
             <div class="col-lg-12">
               <button type="submit" class="btn btn-success">Save The Changes</button>                                
-                <form action="{{ route('bookStore.destroy' , $item->book_id) }}" method="post">
-                    {{ csrf_field() }}
-                    {{ method_field('DELETE') }}
-                    <button type="submit" class="btn btn-primary" onclick="return confirm('Are you sure to delete it?')">Delete</button>
-                </form>
             </div>
           </div>
           
-          <div class="my-5"></div>
+          <div class="my-1"></div>
 
         </form>
+        <div class="row">
+            <div class="col-12">
+                    <form action="{{ route('bookStore.destroy' , $item->book_id) }}" method="post">
+                            {{ csrf_field() }}
+                            {{ method_field('DELETE') }}
+                            <button type="submit" class="btn btn-primary" onclick="return confirm('Are you sure to delete it?')">Delete</button>
+                    </form>
+            </div>
+        </div>
 
         </div>
       </div>
