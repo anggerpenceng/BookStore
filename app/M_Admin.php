@@ -9,6 +9,9 @@ class M_Admin extends Authenticatable
 {
     use Notifiable;
 
+    protected $table = "admin";
+    protected $primaryKey = 'admin_id';
+
     /**
      * The attributes that are mass assignable.
      *

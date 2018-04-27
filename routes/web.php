@@ -11,6 +11,11 @@
 |
 */
 
+//initialized Controler
+
+Route::resource('bookStore', 'Book');
+Route::resource('category', 'BookCategory');
+
 Route::get('/', function () {
     return view('dashboard.main');
 });

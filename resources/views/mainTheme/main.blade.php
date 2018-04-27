@@ -23,10 +23,15 @@
         <div class="the-users">
           guest
         </div>
+        <a href="/">
         <h3><i class="fa fa-dashboard" aria-hidden="true"></i> Dashboard</h3>
-
-        <h3><i class="fa fa-plus-circle" aria-hidden="true"></i> Add Book</h3>
-
+        </a>
+        <a href="{{ route('bookStore.create') }}">
+          <h3><i class="fa fa-plus-circle" aria-hidden="true"></i> Add Book</h3>
+        </a>
+        <a href="{{ route('category.index') }}">        
+          <h3><i class="fa fa-puzzle-piece" aria-hidden="true"></i> Book Category</h3>
+        </a>
         <h3><i class="fa fa-file-text-o" aria-hidden="true"></i> List Book</h3>
 
         <h3><i class="fa fa-wrench" aria-hidden="true"></i> Manage Book</h3>

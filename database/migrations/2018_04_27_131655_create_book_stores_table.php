@@ -15,11 +15,11 @@ class CreateBookStoresTable extends Migration
     {
         Schema::create('book_stores', function (Blueprint $table) {
             $table->increments('book_id');
-            $table->foreign('category_id')->references('category_id')->on('category_books')->onDelete('cascade');
+            $table->index('category_id');
             $table->string('book_name', 100);
             $table->text('description');
-            $table->integer('price' , 11);
-            $table->integer('total_stuff', 11);
+            $table->integer('price');
+            $table->integer('total_stuff');
             $table->timestamps();
         });
     }
