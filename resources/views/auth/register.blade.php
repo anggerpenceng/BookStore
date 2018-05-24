@@ -43,11 +43,11 @@
                                 <label for="phone" class="col-md-4 col-form-label text-md-right">{{ __('Phone Number') }}</label>
     
                                 <div class="col-md-6">
-                                    <input id="phone" type="number" class="form-control{{ $errors->has('phone') ? ' is-invalid' : '' }}" name="phone" value="{{ old('phone') }}" required>
+                                    <input id="phone_number" type="number" class="form-control{{ $errors->has('phone_number') ? ' is-invalid' : '' }}" name="phone_number" value="{{ old('phone_number') }}" required>
     
-                                    @if ($errors->has('phone'))
+                                    @if ($errors->has('phone_number'))
                                         <span class="invalid-feedback">
-                                            <strong>{{ $errors->first('phone') }}</strong>
+                                            <strong>{{ $errors->first('phone_number') }}</strong>
                                         </span>
                                     @endif
                                 </div>

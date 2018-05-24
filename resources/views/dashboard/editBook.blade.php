@@ -34,6 +34,11 @@
             <div class="col-lg-7">
               <div class="form-group">
                 <input id="first" class="form-input" type="text" name="b_name" value="{{ $item->book_name }}"/>
+                @if ($errors->has('book_name'))
+                      <span class="small40li" style="color:red">
+                          <strong>{{ $errors->first('book_name') }}</strong>
+                      </span>
+                @endif
               </div>
             </div>
           </div>

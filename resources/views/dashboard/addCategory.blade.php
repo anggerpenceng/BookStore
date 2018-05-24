@@ -19,13 +19,19 @@
           <div class="row">
             <div class="col-lg-5">
               <p class="small40">Category Name<br>
-                <span class="small40li">Sesuaikan nama center anda dengan benar</span>
+                <span class="small40li">Sesuaikan nama center anda dengan benar</span><br>
+                
               </p>
             </div>
             <div class="col-lg-7">
               <div class="form-group">
                 <label for="first" class="form-label">ex: Social</label>
-                <input id="first" class="form-input" type="text" name="c_name" />
+                <input id="first" class="form-input" type="text" name="category_name" class="form-control{{ $errors->has('category_name') ? ' is-invalid' : '' }}" />
+                @if ($errors->has('category_name'))
+                      <span class="small40li" style="color:red">
+                          <strong>{{ $errors->first('category_name') }}</strong>
+                      </span>
+                @endif
               </div>
             </div>
           </div>

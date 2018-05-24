@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Validator;
 
 class BookCategory extends Controller
 {
@@ -33,10 +34,23 @@ class BookCategory extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
+
+    protected function validator(array $data)
+    {
+        return Validator::make($data, [
+            'category_name' => 'required|string|unique:category_books'
+        ]);
+    }
+
+
     public function store(Request $request)
     {
+        $validator = $request->validate([
+            'category_name' => 'required|string|unique:category_books'
+        ]);
+
         $data = new \App\M_CategoryBook();
-        $data->category_name = $request->c_name;
+        $data->category_name = $request->category_name;
         $data->description = $request->c_deskrip;
         $data->save();
         return redirect()->route('category.index')->with('alert-success','Success Add Category');

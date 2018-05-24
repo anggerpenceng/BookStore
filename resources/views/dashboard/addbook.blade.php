@@ -25,7 +25,12 @@
             <div class="col-lg-7">
               <div class="form-group">
                 <label for="first" class="form-label">ex: Learning Laravel</label>
-                <input id="first" class="form-input" type="text" name="b_name" />
+                <input id="first" class="form-input" type="text" name="book_name" class="form-control{{ $errors->has('book_name') ? ' is-invalid' : '' }}" />
+                @if ($errors->has('book_name'))
+                      <span class="small40li" style="color:red">
+                          <strong>{{ $errors->first('book_name') }}</strong>
+                      </span>
+                @endif
               </div>
             </div>
           </div>

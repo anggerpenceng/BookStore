@@ -36,9 +36,13 @@ class Book extends Controller
      */
     public function store(Request $request)
     {
+        $validator = $request->validate([
+            'book_name' => 'required|string|unique:book_stores'
+        ]);
+
         $data = new \App\M_BookStore();
         $data->category_id = $request->b_catalog;
-        $data->book_name = $request->b_name;
+        $data->book_name = $request->book_name;
         $data->description = $request->b_deskrip;
         $data->price = $request->b_price;
         $data->total_stuff = $request->b_total_stuff;
@@ -80,6 +84,10 @@ class Book extends Controller
      */
     public function update(Request $request, $id)
     {
+        $validator = $request->validate([
+            'book_name' => 'required|string|unique:book_stores'
+        ]);
+        
         $data = \App\M_BookStore::where('book_id' , $id)->first();
         $data->category_id = $request->b_catalog;
         $data->book_name = $request->b_name;
